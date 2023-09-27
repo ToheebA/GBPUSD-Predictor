@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: https://testdockertee.azurecr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_e352e4e86f2646ddad4bb67f3da79604 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_8e6090ffebf74042bd5ff898859c26a6 }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_0ff9749ed9ad46fca14c7aa097e76f51 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_76dac5262d58471c88a37dcb30d33a7a }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: testdockertee.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_e352e4e86f2646ddad4bb67f3da79604 }}/testdockertee/gbpusdpredictor:${{ github.sha }}
+        tags: testdockertee.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_0ff9749ed9ad46fca14c7aa097e76f51 }}/gbpusdpredictor:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'GBPUSDpredictordocker'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_8e1636501ea34efb8dba67d8dfd922ce }}
-        images: 'testdockertee.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_e352e4e86f2646ddad4bb67f3da79604 }}/testdockertee/gbpusdpredictor:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_1452bebe83554e73af0df6d551b0a7d8 }}
+        images: 'testdockertee.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_0ff9749ed9ad46fca14c7aa097e76f51 }}/gbpusdpredictor:${{ github.sha }}'
